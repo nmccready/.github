@@ -1,15 +1,8 @@
 # nmccready/.github
-
-📄 **[Resume](resume.md)** — Nicholas McCready
-
-
 Shared workflows and org-level config for nmccready.
-
 ## Reusable Workflows
-
 ### tests.yml
 Node.js test matrix. Runs install, lint, test.
-
 ```yaml
 jobs:
   tests:
@@ -19,10 +12,8 @@ jobs:
     #   node-versions: '["20.x", "22.x"]'
     #   lint: false
 ```
-
 ### release.yml
 Conventional commits → commit-and-tag-version → push tags. Requires `GH_TOKEN` secret.
-
 ```yaml
 jobs:
   release:
@@ -31,20 +22,16 @@ jobs:
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
 ```
-
 ### publish.yml
 OIDC npm publish on `v*` tag. No NPM_TOKEN needed.
-
 ```yaml
 jobs:
   publish:
     needs: [tests]
     uses: nmccready/.github/.github/workflows/publish.yml@main
 ```
-
 ### dependabot-auto-merge.yml
 Auto-approve and enable auto-merge (with `--merge` strategy) for dependabot PRs.
-
 ```yaml
 name: Dependabot Auto-Merge
 on: pull_request_target
@@ -55,9 +42,7 @@ jobs:
   dependabot:
     uses: nmccready/.github/.github/workflows/dependabot-auto-merge.yml@main
 ```
-
 ## Example: Thin repo workflows
-
 **`.github/workflows/tests.yml`**
 ```yaml
 name: tests
@@ -71,7 +56,6 @@ jobs:
   tests:
     uses: nmccready/.github/.github/workflows/tests.yml@main
 ```
-
 **`.github/workflows/release.yml`**
 ```yaml
 name: release
@@ -88,7 +72,6 @@ jobs:
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
 ```
-
 **`.github/workflows/publish.yml`**
 ```yaml
 name: publish
@@ -103,7 +86,6 @@ jobs:
     needs: [tests]
     uses: nmccready/.github/.github/workflows/publish.yml@main
 ```
-
 **`.github/workflows/dependabot-auto-merge.yml`**
 ```yaml
 name: Dependabot Auto-Merge
