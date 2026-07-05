@@ -24,6 +24,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.ref_name }}
         run: |
+          # Extract version from tag
           echo "Creating release for tag: $TAG"
 
           NOTES_FLAG=""
